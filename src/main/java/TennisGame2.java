@@ -3,16 +3,16 @@ import java.util.Map;
 
 public class TennisGame2 implements TennisGame
 {
-    public int player1Points = 0;
-    public int player2Points = 0;
-    
-    public String player1Score = "";
-    public String player2Score = "";
+    private int player1Points = 0;
+    private int player2Points = 0;
+
+    private String player1Score = "";
+    private String player2Score = "";
     private String player1Name;
     private String player2Name;
 
 
-    private static final Map<Integer, String> PUNTUACIONES = new HashMap<Integer, String>();
+    private static final Map<Integer, String> PUNTUACIONES = new HashMap<>();
 
     static{
         PUNTUACIONES.put(0, "Love");
@@ -27,7 +27,7 @@ public class TennisGame2 implements TennisGame
     }
 
     public String getScore(){
-        String score = "";
+
         if (this.player1Points == this.player2Points)
         {
             return this.getDraws();
@@ -44,52 +44,19 @@ public class TennisGame2 implements TennisGame
         else {
             return this.getWinner();
         }
- /*
-        if (this.player2Points > 0 && this.player1Points ==0)
-        {
-            score = this.getPartialScore();
-        }
-        
-        if (this.player1Points >this.player2Points && this.player1Points < 4)
-        {
-            score = this.getPartialScore();
-        }
-        if (this.player2Points >this.player1Points && this.player2Points < 4)
-        {
-            score = this.getPartialScore();
-        }
-        
-        if (this.player1Points > this.player2Points && this.player2Points >= 3)
-        {
-            score = "Advantage player1";
-        }
-        
-        if (this.player2Points > this.player1Points && this.player1Points >= 3)
-        {
-            score = "Advantage player2";
-        }
-        
-        if (this.player1Points >=4 && this.player2Points >=0 && (this.player1Points -this.player2Points)>=2)
-        {
-            score = "Win for player1";
-        }
-        if (this.player2Points >=4 && this.player1Points >=0 && (this.player2Points -this.player1Points)>=2)
-        {
-            score = "Win for player2";
-        }
-        return score;*/
     }
-    
-    public void SetP1Score(int number){
+
+    /*
+    public void setP1Score(int number){
         
         for (int i = 0; i < number; i++)
         {
-            P1Score();
+            p1Score();
         }
             
     }
     
-    public void SetP2Score(int number){
+    public void setP2Score(int number){
         
         for (int i = 0; i < number; i++)
         {
@@ -97,20 +64,21 @@ public class TennisGame2 implements TennisGame
         }
             
     }
+    */
     
-    public void P1Score(){
+    public void p1Score(){
         player1Points++;
     }
     
-    public void P2Score(){
+    public void p2Score(){
         player2Points++;
     }
 
     public void wonPoint(String player) {
         if (player.equals(player1Name))
-            P1Score();
+            p1Score();
         if (player.equals(player2Name))
-            P2Score();
+            p2Score();
     }
 
     private String getDraws(){
