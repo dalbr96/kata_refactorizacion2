@@ -64,7 +64,7 @@ public class TennisGame2 implements TennisGame
     private String getDraws(){
 
         return this.player1Points < 3? getPlayerScore(player1Points) + "-All": "Deuce";
-        
+
     }
 
     private boolean isNotOverTime(){
@@ -101,12 +101,8 @@ public class TennisGame2 implements TennisGame
 
     private String getAdvantage(){
 
-        if(this.player1Points > this.player2Points){
+        return this.player1Points > this.player2Points? "Advantage " + this.player1Name: "Advantage " + this.player2Name;
 
-            return "Advantage " + this.player1Name;
-        }
-
-        return "Advantage " + this.player2Name;
     }
 
     private String getWinner(){
