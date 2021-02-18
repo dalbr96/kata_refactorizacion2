@@ -62,12 +62,9 @@ public class TennisGame2 implements TennisGame
     }
 
     private String getDraws(){
-        if(player1Points < 3){
 
-            return getPlayerScore(player1Points) + "-All";
-
-        }
-        return "Deuce";
+        return this.player1Points < 3? getPlayerScore(player1Points) + "-All": "Deuce";
+        
     }
 
     private boolean isNotOverTime(){
