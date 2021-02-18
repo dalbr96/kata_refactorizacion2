@@ -31,40 +31,39 @@ public class TennisGame2 implements TennisGame
         {
             score = this.getDraws();
         }
-        
-        if (P1point > 0 && P2point==0)
+        if (this.P1point > 0 && this.P2point==0)
         {
             score = this.getPartialScore();
         }
-        if (P2point > 0 && P1point==0)
-        {
-            score = this.getPartialScore();
-        }
-        
-        if (P1point>P2point && P1point < 4)
-        {
-            score = this.getPartialScore();
-        }
-        if (P2point>P1point && P2point < 4)
+        if (this.P2point > 0 && this.P1point==0)
         {
             score = this.getPartialScore();
         }
         
-        if (P1point > P2point && P2point >= 3)
+        if (this.P1point>this.P2point && this.P1point < 4)
+        {
+            score = this.getPartialScore();
+        }
+        if (this.P2point>this.P1point && this.P2point < 4)
+        {
+            score = this.getPartialScore();
+        }
+        
+        if (this.P1point > this.P2point && this.P2point >= 3)
         {
             score = "Advantage player1";
         }
         
-        if (P2point > P1point && P1point >= 3)
+        if (this.P2point > this.P1point && this.P1point >= 3)
         {
             score = "Advantage player2";
         }
         
-        if (P1point>=4 && P2point>=0 && (P1point-P2point)>=2)
+        if (this.P1point>=4 && this.P2point>=0 && (this.P1point-this.P2point)>=2)
         {
             score = "Win for player1";
         }
-        if (P2point>=4 && P1point>=0 && (P2point-P1point)>=2)
+        if (this.P2point>=4 && this.P1point>=0 && (this.P2point-this.P1point)>=2)
         {
             score = "Win for player2";
         }
@@ -106,15 +105,9 @@ public class TennisGame2 implements TennisGame
 
     private String getDraws(){
         if(P1point < 3){
-            String draw = "";
-            if (P1point==0)
-                draw = "Love";
-            if (P1point==1)
-                draw = "Fifteen";
-            if (P1point==2)
-                draw = "Thirty";
-            draw += "-All";
-            return draw;
+
+            return getPlayerScore(P1point) + "-All";
+
         }
         return "Deuce";
     }
@@ -131,4 +124,5 @@ public class TennisGame2 implements TennisGame
 
         return this.P1res + "-" + this.P2res;
     }
+    
 }
