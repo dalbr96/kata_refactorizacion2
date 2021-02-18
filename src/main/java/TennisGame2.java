@@ -1,3 +1,5 @@
+import java.util.HashMap;
+import java.util.Map;
 
 public class TennisGame2 implements TennisGame
 {
@@ -8,6 +10,15 @@ public class TennisGame2 implements TennisGame
     public String P2res = "";
     private String player1Name;
     private String player2Name;
+
+    private static final Map<Integer, String> PUNTUACIONES = new HashMap<Integer, String>();
+
+    static{
+        PUNTUACIONES.put(0, "Love");
+        PUNTUACIONES.put(1, "Fifteen");
+        PUNTUACIONES.put(2, "Thirty");
+        PUNTUACIONES.put(3, "Forty");
+    }
 
     public TennisGame2(String player1Name, String player2Name) {
         this.player1Name = player1Name;
@@ -23,15 +34,7 @@ public class TennisGame2 implements TennisGame
         
         if (P1point > 0 && P2point==0)
         {
-            if (P1point==1)
-                P1res = "Fifteen";
-            if (P1point==2)
-                P1res = "Thirty";
-            if (P1point==3)
-                P1res = "Forty";
-            
-            P2res = "Love";
-            score = P1res + "-" + P2res;
+            score = this.getPartialScore();
         }
         if (P2point > 0 && P1point==0)
         {
@@ -138,6 +141,18 @@ public class TennisGame2 implements TennisGame
             return draw;
         }
         return "Deuce";
+    }
 
+    private String getPlayerScore(int points){
+
+        return PUNTUACIONES.get(points);
+    }
+
+    private String getPartialScore(){
+
+        this.P1res = this.getPlayerScore(P1point);
+        this.P2res = this.getPlayerScore(P2point);
+
+        return this.P1res + "-" + this.P2res;
     }
 }
