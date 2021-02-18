@@ -3,15 +3,14 @@ import java.util.Map;
 
 public class TennisGame2 implements TennisGame
 {
-    public int P1point = 0;
-    public int P2point = 0;
+    public int player1Points = 0;
+    public int player2Points = 0;
     
     public String player1Score = "";
     public String player2Score = "";
     private String player1Name;
     private String player2Name;
 
-    private Integer prueba = new Integer();
 
     private static final Map<Integer, String> PUNTUACIONES = new HashMap<Integer, String>();
 
@@ -29,43 +28,43 @@ public class TennisGame2 implements TennisGame
 
     public String getScore(){
         String score = "";
-        if (this.P1point == this.P2point)
+        if (this.player1Points == this.player2Points)
         {
-            score = this.getDraws();
+            return this.getDraws();
         }
-        if (this.P1point > 0 && this.P2point==0)
+        if (!this.isOverTime())
         {
-            score = this.getPartialScore();
+            return this.getPartialScore();
         }
-        if (this.P2point > 0 && this.P1point==0)
-        {
-            score = this.getPartialScore();
-        }
-        
-        if (this.P1point>this.P2point && this.P1point < 4)
-        {
-            score = this.getPartialScore();
-        }
-        if (this.P2point>this.P1point && this.P2point < 4)
+        if (this.player2Points > 0 && this.player1Points ==0)
         {
             score = this.getPartialScore();
         }
         
-        if (this.P1point > this.P2point && this.P2point >= 3)
+        if (this.player1Points >this.player2Points && this.player1Points < 4)
+        {
+            score = this.getPartialScore();
+        }
+        if (this.player2Points >this.player1Points && this.player2Points < 4)
+        {
+            score = this.getPartialScore();
+        }
+        
+        if (this.player1Points > this.player2Points && this.player2Points >= 3)
         {
             score = "Advantage player1";
         }
         
-        if (this.P2point > this.P1point && this.P1point >= 3)
+        if (this.player2Points > this.player1Points && this.player1Points >= 3)
         {
             score = "Advantage player2";
         }
         
-        if (this.P1point>=4 && this.P2point>=0 && (this.P1point-this.P2point)>=2)
+        if (this.player1Points >=4 && this.player2Points >=0 && (this.player1Points -this.player2Points)>=2)
         {
             score = "Win for player1";
         }
-        if (this.P2point>=4 && this.P1point>=0 && (this.P2point-this.P1point)>=2)
+        if (this.player2Points >=4 && this.player1Points >=0 && (this.player2Points -this.player1Points)>=2)
         {
             score = "Win for player2";
         }
@@ -91,11 +90,11 @@ public class TennisGame2 implements TennisGame
     }
     
     public void P1Score(){
-        P1point++;
+        player1Points++;
     }
     
     public void P2Score(){
-        P2point++;
+        player2Points++;
     }
 
     public void wonPoint(String player) {
@@ -106,9 +105,9 @@ public class TennisGame2 implements TennisGame
     }
 
     private String getDraws(){
-        if(P1point < 3){
+        if(player1Points < 3){
 
-            return getPlayerScore(P1point) + "-All";
+            return getPlayerScore(player1Points) + "-All";
 
         }
         return "Deuce";
@@ -121,10 +120,15 @@ public class TennisGame2 implements TennisGame
 
     private String getPartialScore(){
 
-        this.player1Score = this.getPlayerScore(P1point);
-        this.player2Score = this.getPlayerScore(P2point);
+        this.player1Score = this.getPlayerScore(player1Points);
+        this.player2Score = this.getPlayerScore(player2Points);
 
         return this.player1Score + "-" + this.player2Score;
+    }
+
+    private boolean isOverTime(){
+
+        return (this.player1Points > 3 || this.player2Points > 3);
     }
 
 }
