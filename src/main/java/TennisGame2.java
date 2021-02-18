@@ -6,10 +6,12 @@ public class TennisGame2 implements TennisGame
     public int P1point = 0;
     public int P2point = 0;
     
-    public String P1res = "";
-    public String P2res = "";
+    public String player1Score = "";
+    public String player2Score = "";
     private String player1Name;
     private String player2Name;
+
+    private Integer prueba = new Integer();
 
     private static final Map<Integer, String> PUNTUACIONES = new HashMap<Integer, String>();
 
@@ -119,10 +121,10 @@ public class TennisGame2 implements TennisGame
 
     private String getPartialScore(){
 
-        this.P1res = this.getPlayerScore(P1point);
-        this.P2res = this.getPlayerScore(P2point);
+        this.player1Score = this.getPlayerScore(P1point);
+        this.player2Score = this.getPlayerScore(P2point);
 
-        return this.P1res + "-" + this.P2res;
+        return this.player1Score + "-" + this.player2Score;
     }
-    
+
 }
