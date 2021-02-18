@@ -28,7 +28,7 @@ public class TennisGame2 implements TennisGame
 
     public String getScore(){
 
-        if (this.player1Points == this.player2Points)
+        if (this.isDraw())
         {
             return this.getDraws();
         }
@@ -41,31 +41,11 @@ public class TennisGame2 implements TennisGame
         if(this.isOverTime()){
             return this.getAdvantage();
         }
-        else {
-            return this.getWinner();
-        }
+
+        return this.getWinner();
+
     }
 
-    /*
-    public void setP1Score(int number){
-        
-        for (int i = 0; i < number; i++)
-        {
-            p1Score();
-        }
-            
-    }
-    
-    public void setP2Score(int number){
-        
-        for (int i = 0; i < number; i++)
-        {
-            P2Score();
-        }
-            
-    }
-    */
-    
     public void p1Score(){
         player1Points++;
     }
@@ -90,19 +70,6 @@ public class TennisGame2 implements TennisGame
         return "Deuce";
     }
 
-    private String getPlayerScore(int points){
-
-        return PUNTUACIONES.get(points);
-    }
-
-    private String getPartialScore(){
-
-        this.player1Score = this.getPlayerScore(player1Points);
-        this.player2Score = this.getPlayerScore(player2Points);
-
-        return this.player1Score + "-" + this.player2Score;
-    }
-
     private boolean isNotOverTime(){
 
         return (this.player1Points <= 3 && this.player2Points <= 3);
@@ -115,6 +82,25 @@ public class TennisGame2 implements TennisGame
 
         return condicionPuntos && condicionDiferencia;
     }
+
+    private boolean isDraw(){
+
+        return this.player1Points == this.player2Points;
+    }
+
+    private String getPlayerScore(int points){
+
+        return PUNTUACIONES.get(points);
+    }
+
+    private String getPartialScore(){
+
+        this.player1Score = this.getPlayerScore(this.player1Points);
+        this.player2Score = this.getPlayerScore(this.player2Points);
+
+        return this.player1Score + "-" + this.player2Score;
+    }
+
 
     private String getAdvantage(){
 
