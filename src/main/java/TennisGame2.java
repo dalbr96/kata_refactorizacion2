@@ -151,13 +151,11 @@ public class TennisGame2 implements TennisGame
     private String getAdvantage(){
 
         if(this.player1Points > this.player2Points){
+
             return "Advantage " + this.player1Name;
         }
 
-        if(this.player1Points < this.player2Points){
-            return "Advantage " + this.player2Name;
-        }
-        return "";
+        return "Advantage " + this.player2Name;
     }
 
     private String getWinner(){
