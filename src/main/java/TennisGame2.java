@@ -57,7 +57,7 @@ public class TennisGame2 implements TennisGame
     public void wonPoint(String player) {
         if (player.equals(player1Name))
             p1Score();
-        if (player.equals(player2Name))
+        else
             p2Score();
     }
 
@@ -88,6 +88,7 @@ public class TennisGame2 implements TennisGame
     private String getPlayerScore(int points){
 
         return PUNTUACIONES.get(points);
+
     }
 
     private String getPartialScore(){
@@ -106,12 +107,7 @@ public class TennisGame2 implements TennisGame
     }
 
     private String getWinner(){
-        if(this.player1Points > this.player2Points){
-
-            return "Win for " + this.player1Name;
-        }
-
-        return "Win for " + this.player2Name;
+        return this.player1Points > this.player2Points? "Win for " + this.player1Name : "Win for " + this.player2Name;
 
     }
 
