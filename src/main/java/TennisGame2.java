@@ -32,10 +32,19 @@ public class TennisGame2 implements TennisGame
         {
             return this.getDraws();
         }
-        if (!this.isOverTime())
+
+        if (this.isNotOverTime())
         {
             return this.getPartialScore();
         }
+
+        if(this.isOverTime()){
+            return this.getAdvantage();
+        }
+        else {
+            return this.getWinner();
+        }
+ /*
         if (this.player2Points > 0 && this.player1Points ==0)
         {
             score = this.getPartialScore();
@@ -68,7 +77,7 @@ public class TennisGame2 implements TennisGame
         {
             score = "Win for player2";
         }
-        return score;
+        return score;*/
     }
     
     public void SetP1Score(int number){
@@ -98,9 +107,9 @@ public class TennisGame2 implements TennisGame
     }
 
     public void wonPoint(String player) {
-        if (player == "player1")
+        if (player.equals(player1Name))
             P1Score();
-        else
+        if (player.equals(player2Name))
             P2Score();
     }
 
@@ -126,9 +135,39 @@ public class TennisGame2 implements TennisGame
         return this.player1Score + "-" + this.player2Score;
     }
 
+    private boolean isNotOverTime(){
+
+        return (this.player1Points <= 3 && this.player2Points <= 3);
+    }
+
     private boolean isOverTime(){
 
-        return (this.player1Points > 3 || this.player2Points > 3);
+        boolean condicionPuntos = this.player1Points >= 3 || this.player2Points >=3;
+        boolean condicionDiferencia = Math.abs(this.player1Points - this.player2Points) == 1;
+
+        return condicionPuntos && condicionDiferencia;
+    }
+
+    private String getAdvantage(){
+
+        if(this.player1Points > this.player2Points){
+            return "Advantage " + this.player1Name;
+        }
+
+        if(this.player1Points < this.player2Points){
+            return "Advantage " + this.player2Name;
+        }
+        return "";
+    }
+
+    private String getWinner(){
+        if(this.player1Points > this.player2Points){
+
+            return "Win for " + this.player1Name;
+        }
+
+        return "Win for " + this.player2Name;
+
     }
 
 }
