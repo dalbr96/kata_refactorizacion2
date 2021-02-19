@@ -28,13 +28,11 @@ public class TennisGame2 implements TennisGame
 
     public String getScore(){
 
-        if (this.isDraw())
-        {
+        if (this.isDraw()) {
             return this.getDraws();
         }
 
-        if (this.isNotOverTime())
-        {
+        if (this.isNotOverTime()) {
             return this.getPartialScore();
         }
 
@@ -46,14 +44,6 @@ public class TennisGame2 implements TennisGame
 
     }
 
-    public void p1Score(){
-        player1Points++;
-    }
-    
-    public void p2Score(){
-        player2Points++;
-    }
-
     public void wonPoint(String player) {
         if (player.equals(player1Name))
             p1Score();
@@ -61,28 +51,18 @@ public class TennisGame2 implements TennisGame
             p2Score();
     }
 
+    private void p1Score(){
+        player1Points++;
+    }
+
+    private void p2Score(){
+        player2Points++;
+    }
+
     private String getDraws(){
 
         return this.player1Points < 3? getPlayerScore(player1Points) + "-All": "Deuce";
 
-    }
-
-    private boolean isNotOverTime(){
-
-        return (this.player1Points <= 3 && this.player2Points <= 3);
-    }
-
-    private boolean isOverTime(){
-
-        boolean condicionPuntos = this.player1Points >= 3 || this.player2Points >=3;
-        boolean condicionDiferencia = Math.abs(this.player1Points - this.player2Points) == 1;
-
-        return condicionPuntos && condicionDiferencia;
-    }
-
-    private boolean isDraw(){
-
-        return this.player1Points == this.player2Points;
     }
 
     private String getPlayerScore(int points){
@@ -99,7 +79,6 @@ public class TennisGame2 implements TennisGame
         return this.player1Score + "-" + this.player2Score;
     }
 
-
     private String getAdvantage(){
 
         return this.player1Points > this.player2Points? "Advantage " + this.player1Name: "Advantage " + this.player2Name;
@@ -110,5 +89,25 @@ public class TennisGame2 implements TennisGame
         return this.player1Points > this.player2Points? "Win for " + this.player1Name : "Win for " + this.player2Name;
 
     }
+
+    private boolean isNotOverTime(){
+
+        return (this.player1Points <= 3 && this.player2Points <= 3);
+    }
+
+    private boolean isOverTime(){
+
+        boolean minimumPointsCondition = this.player1Points >= 3 || this.player2Points >=3;
+        boolean pointDifferenceCondition = Math.abs(this.player1Points - this.player2Points) == 1;
+
+        return minimumPointsCondition && pointDifferenceCondition;
+    }
+
+    private boolean isDraw(){
+
+        return this.player1Points == this.player2Points;
+    }
+
+
 
 }
